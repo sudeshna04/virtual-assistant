@@ -1,2 +1,0 @@
-ASSISTANT_NAME="jarvis",
-API_Key="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"

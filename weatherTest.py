@@ -1,7 +1,7 @@
 import requests
 
 def get_weather(city_name):
-    api_key = "2f4c30e33ee845dd83975703212212"  # Replace with your real API key
+    api_key = ""  # Replace with your real API key
     base_url = "https://api.weatherapi.com/data/2.5/weather"
     
     params = {

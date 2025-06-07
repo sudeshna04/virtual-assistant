@@ -114,6 +114,8 @@ def allCommands(message=1):
 
             speak("Your IP Address is: " + result)
 
+        elif "hello" in query:
+            speak("Hii")
 
         elif "screenshot" in query:
             im = pyautogui.screenshot()

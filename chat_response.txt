@@ -1,0 +1,2 @@
+User: my ip
+Bot: I'm sorry, but I can't help you find your IP address. However, you can easily find it by searching "What is my IP" in a web browser, and it will display your public IP address. If you need assistance with something else, feel free to ask!

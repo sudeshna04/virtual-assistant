@@ -1,5 +1,8 @@
+import datetime
 import sys
+import pyautogui
 import pyttsx3
+import requests
 import speech_recognition as sr
 import eel
 import time
@@ -90,6 +93,33 @@ def allCommands(message=1):
         elif "lord" in query:
             speak("Hare krishna")
 
+        elif "time" in query:
+            time = datetime.datetime.now().strftime("%H:%M")
+            speak(time)
+
+
+        elif "date" in query:
+            date = datetime.date.today()
+            speak(date)
+
+
+        elif "day" in query:            
+            day = datetime.datetime.now().strftime("%A")
+            speak(day)
+
+        elif "my ip address" in query or "my ip" in query:
+            speak("Finding IP Address")
+            ip_address = requests.get('https://api.ipify.org?format=json').json()
+            result = ip_address["ip"]
+
+            speak("Your IP Address is: " + result)
+
+
+        elif "screenshot" in query:
+            im = pyautogui.screenshot()
+            im.save("screenshot_sample.jpg")
+            speak("Screenshot captured and saved.")
+           
         # whatsApp
         elif "send message" in query or "phone call" in query or "video call" in query:
             from engine.features import findContact, whatsApp

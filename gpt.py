@@ -1,10 +1,19 @@
 import openai
-from engine.config import API_Key
 import eel
 
 import pyttsx3
 import speech_recognition as sr
-# Replace YOUR_API_KEY with your actual key
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Load variables from .env file
+
+API_Key = os.getenv("API_Key")
+
+print("API Key loaded:", bool(API_Key))  # Should print True if loaded
+
+
 openai.api_key = API_Key
 engine = pyttsx3.init()
 

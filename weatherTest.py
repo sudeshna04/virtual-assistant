@@ -1,41 +1,37 @@
 import requests
+import os
+from dotenv import load_dotenv
 
-def get_weather(city_name):
-    api_key = ""  # Replace with your real API key
-    base_url = "https://api.weatherapi.com/data/2.5/weather"
-    
+load_dotenv()  # Load variables from .env file
+
+WeatherAPI = os.getenv("WeatherAPI")
+
+print("API Key loaded:", bool(WeatherAPI)) 
+def get_weather(city_name, api_key):
+    base_url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
-        "q": city_name,
-        "appid": api_key,
-        "units": "metric"  # For temperature in Celsius
+        'q': city_name,
+        'appid': api_key,
+        'units': 'metric'  # or 'imperial' for Fahrenheit
     }
-
+    
     response = requests.get(base_url, params=params)
-    data = response.json()
+    
+    if response.status_code == 200:
+        data = response.json()
+        weather = {
+            'city': data['name'],
+            'temperature': data['main']['temp'],
+            'description': data['weather'][0]['description'],
+            'humidity': data['main']['humidity'],
+            'wind_speed': data['wind']['speed']
+        }
+        return weather
+    else:
+        return f"Error: {response.status_code} - {response.json().get('message', '')}"
 
-    if data.get("cod") != 200:
-        print("City not found.")
-        return
-
-    temp = data["main"]["temp"]
-    description = data["weather"][0]["description"]
-    humidity = data["main"]["humidity"]
-    wind = data["wind"]["speed"]
-
-    print(f"Weather in {city_name}:\n"
-          f"Temperature: {temp}°C\n"
-          f"Condition: {description}\n"
-          f"Humidity: {humidity}%\n"
-          f"Wind Speed: {wind} m/s")
-
-# Example use
-get_weather("Jamshedpur")
-
-# # | Weather API        | Accuracy | Free Tier | Ease of Use | Best For                        |
-# # |--------------------|----------|-----------|-------------|---------------------------------|
-# # | **OpenWeatherMap** | ✅ Good  | ✅ Yes     | ✅ Easy      | Beginners, general weather info |
-# # | **WeatherAPI**     | ✅ Good  | ✅ Yes     | ✅ Easy      | Forecasts, clean JSON data      |
-# # | **Tomorrow.io**    | ✅ Great | ✅ Yes     | ⚠️ Medium    | Hyper-local data, advanced use  |
-# # | **AccuWeather**    | ✅ Great | ⚠️ Limited | ⚠️ Complex   | Professional apps, alerts       |
-# # | **Weatherstack**   | ✅ Okay  | ✅ Yes     | ✅ Easy      | Simple current weather only     |
-
+# Example usage
+API_KEY = WeatherAPI
+city = "London"
+weather_info = get_weather(city, API_KEY)
+print(weather_info)

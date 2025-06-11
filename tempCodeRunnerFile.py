@@ -1,0 +1,2 @@
+t)
+    # eel.receiverText(text)

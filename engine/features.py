@@ -201,8 +201,8 @@ def findContact(query):
     
 
 # Whatsapp
-voice_call_coords = (1291, 65)    #x, y = pyautogui.position()
-video_call_coords = (1240, 67)    
+voice_call_coords = (1006, 333)    #x, y = pyautogui.position()
+video_call_coords = (827, 341)    
 
 def whatsApp(mobile_no, message, flag, name):
     flag = flag.lower()

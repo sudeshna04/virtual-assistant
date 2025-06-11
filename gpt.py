@@ -85,4 +85,4 @@ def chatBot(query):
     except Exception as e:
         print("Error:", e)
         return "Sorry, I couldn't process your request."
-chatBot("lord krishna")
+# chatBot()

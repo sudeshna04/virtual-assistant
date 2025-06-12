@@ -121,6 +121,11 @@ def allCommands(message=1):
         # elif "show task" in query:
         #     from Tasks.tasklist import 
 
+        elif "play game" in query:
+            from game import game_play
+            game_play()
+            
+
         elif "screenshot" in query:
             im = pyautogui.screenshot()
             im.save("screenshot_sample.jpg")

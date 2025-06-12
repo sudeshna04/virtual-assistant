@@ -114,8 +114,12 @@ def allCommands(message=1):
 
             speak("Your IP Address is: " + result)
 
-        elif "hello hii" in query:
-            speak("Hii")
+        elif "add task" in query:
+            from Tasks.addtask import add_task_from_input
+            add_task_from_input()
+
+        # elif "show task" in query:
+        #     from Tasks.tasklist import 
 
         elif "screenshot" in query:
             im = pyautogui.screenshot()

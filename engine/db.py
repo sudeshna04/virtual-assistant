@@ -51,7 +51,6 @@ cursor = con.cursor()
 # query = "INSERT INTO contacts VALUES (3,'Sudeshna Das', '8016242230', 'null')"
 # cursor.execute(query)
 # con.commit()
-
 # query = 'vp'
 # query = query.strip().lower()
 
@@ -63,5 +62,6 @@ cursor = con.cursor()
 #     print("No Contact found")
 
 # query = "delete from sys_command where name='Code'"
+# query = "delete from contacts where id=6"
 # cursor.execute(query)
 # con.commit()

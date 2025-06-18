@@ -17,7 +17,7 @@ def capture_smile_photo():
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     smile_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_smile.xml')
 
-    cap = cv2.VideoCapture(1) #cap is the camera object used to read frames.
+    cap = cv2.VideoCapture(0) #cap is the camera object used to read frames.
     captured = False
 
     speak("Looking for your smile. Please smile at the camera.")

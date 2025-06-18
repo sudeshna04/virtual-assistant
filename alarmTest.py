@@ -3,14 +3,14 @@ import time as time_module
 import datetime
 from playsound import playsound
 import pyttsx3
-
+import eel
 engine = pyttsx3.init()
 
 def Say(text):
     engine.say(text)
     print("Speaking:", text)
     engine.runAndWait()
-
+   
 def set_alarm():
     Say("Please specify the time for the alarm (e.g., '10:30').")
     alarm_time = input("Enter time (HH:MM): ").strip()
@@ -36,7 +36,7 @@ def ring_alarm(alarm_time):
         if current_time == alarm_time.strip():
             Say("Alarm ringing.")
             try:
-                playsound("www\\assets\\audio\\start_sound.mp3")  # Simplify path or use absolute path
+                playsound("www\\assets\\audio\\AlarmNotification.mp3")  # Simplify path or use absolute path
             except Exception as e:
                 Say(f"Could not play the alarm sound: {e}")
             break

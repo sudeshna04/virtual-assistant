@@ -1,5 +1,22 @@
 import requests
 import os
+import pyttsx3
+import requests
+import speech_recognition as sr
+import eel
+import time
+
+import platform
+import subprocess
+def speak(text1):
+    text1=str(text1)
+    engine=pyttsx3.init()
+    rate = engine.getProperty('rate')   # getting details of current speaking rate
+    engine.setProperty('rate', 150)  
+    # eel.DisplayMessage(text1)  
+    engine.say(text1)
+    # eel.receiverText(text1)
+    engine.runAndWait() 
 from dotenv import load_dotenv
 
 load_dotenv()  # Load variables from .env file
@@ -31,7 +48,8 @@ def get_weather(city_name, api_key):
         return f"Error: {response.status_code} - {response.json().get('message', '')}"
 
 # Example usage
-API_KEY = WeatherAPI
-city = "London"
-weather_info = get_weather(city, API_KEY)
-print(weather_info)
+# API_KEY = WeatherAPI
+# city = "Jamshedpur"
+# weather_info = get_weather(city, API_KEY)
+# print(weather_info)
+# speak(f"The weather in {weather_info['city']} is {weather_info['description']} with a temperature of {weather_info['temperature']} degrees Celsius, humidity at {weather_info['humidity']} percent, and wind speed of {weather_info['wind_speed']} meters per second.")

@@ -1,3 +1,2 @@
-RT INTO sys_command VALUES (null,'Code', 'C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\Code.exe')"
-cursor.execute(query)
-con.commit()
+ IF NOT EXISTS sys_command(id integer primary key, name VARCHAR(100), path VARCHAR(1000))"
+# cursor.execute(query)

@@ -1,4 +1,5 @@
 import datetime
+import random
 import sys
 import pyautogui
 import pyttsx3
@@ -7,6 +8,8 @@ import speech_recognition as sr
 import eel
 import time
 
+import platform
+import subprocess
 def speak(text1):
     text1=str(text1)
     engine=pyttsx3.init()
@@ -76,8 +79,11 @@ def allCommands(message=1):
         elif "how are you" in query:
             speak("I am fine, how about you?")
 
-        elif "how are you doing today" in query:
+        elif "how are you doing today" in query or "what's up" in query or "what is up" in query:
             speak("I am doing great, how about you?")
+
+        elif "what are you doing" in query:
+            speak("Just waiting for your command.")
 
         elif "jarvis" == query:
             speak("Ya, I am listening")
@@ -114,23 +120,82 @@ def allCommands(message=1):
 
             speak("Your IP Address is: " + result)
 
-        elif "add task" in query:
-            from Tasks.addtask import add_task_from_input
-            add_task_from_input()
-
-        # elif "show task" in query:
-        #     from Tasks.tasklist import 
-
-        elif "play game" in query:
+       
+        elif "play game" in query or "game" in query:
             from game import game_play
             game_play()
             
-
+       
         elif "screenshot" in query:
             im = pyautogui.screenshot()
             im.save("screenshot_sample.jpg")
             speak("Screenshot captured and saved.")
-           
+            
+
+        elif "photo" in query:
+            speak("Please smile at the camera.")
+            from camtest import capture_smile_photo
+            capture_smile_photo()
+
+        elif "stopwatch" in query:
+            from stopWatch import countdown
+            speak("Starting stopwatch for 15 seconds.")
+            countdown(15)
+
+        elif "alarm" in query:
+            speak("use terminal to set alarm")
+            # from alarmTest import handle_alarm
+            # handle_alarm()
+        
+
+        elif "add task" in query:
+            speak("Use terminal for adding task")
+            # from Tasks.addtask import add_task_from_input
+            # add_task_from_input()
+
+        elif "show task" in query:
+            speak("Use terminal for showing tasks")
+            # from Tasks.tasklist import tell_pending_tasks
+            # tell_pending_tasks()
+
+        elif "add task" in query:
+            speak("Use terminal for adding task")
+            # from Tasks.addtask import add_task_from_input
+            # add_task_from_input()
+
+        elif "note" in query or "notes" in query:
+            speak("Use terminal for note tasks")
+            # from Tasks.tasklist import tell_pending_tasks
+            # tell_pending_tasks()
+
+        elif "translate" in query:
+            from Translate import translation
+            speak("Please wait while I translate your text.")
+            translation()
+
+        elif "pdf" in query or "pdf reader" in query:
+            from pypdf import pdf_reader
+            speak("Please wait while I read the PDF.")
+            pdf_reader()
+
+        elif "weather" in query:
+            from weatherTest import get_weather
+            from dotenv import load_dotenv
+            import requests
+            import os
+            load_dotenv()  # Load variables from .env file
+
+            WeatherAPI = os.getenv("WeatherAPI")
+            city=["Jamshedpur", "Mumbai", "Delhi", "Kolkata", "Bangalore", "Chennai", "Hyderabad", "Pune", "Ahmedabad", "Jaipur"]
+            city=random.choice(city)
+
+            speak("Please wait while I fetch the weather information.")
+            city = city
+            get_weather(city, WeatherAPI)
+            weather_info = get_weather(city, WeatherAPI)
+            print(weather_info)
+            speak(f"The weather in {weather_info['city']} is {weather_info['description']} with a temperature of {weather_info['temperature']} degrees Celsius, humidity at {weather_info['humidity']} percent, and wind speed of {weather_info['wind_speed']} meters per second.")
+
         # whatsApp
         elif "send message" in query or "phone call" in query or "video call" in query:
             from engine.features import findContact, whatsApp
@@ -151,13 +216,10 @@ def allCommands(message=1):
         #     speak("Sorry, I cannot understand")
 
         else:
-        #    from engine.features import chatBot
-        #    speak("Please wait while am fetching...")
-        #    chatBot(query)
-             from gpt import chatBot
-             speak("Please wait while am fetching...")
-             chatBot(query)
-        
+            from gpt import chatBot
+            speak("Please wait while am fetching...")
+            chatBot(query)
+            # speak("Sorry, I cannot understand. Please try again.")
            
     except Exception as e:
         print("Error:", str(e))

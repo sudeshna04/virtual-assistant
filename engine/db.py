@@ -3,11 +3,11 @@ import sqlite3
 
 con = sqlite3.connect("jarvis.db")
 cursor = con.cursor()
-
+# C:\Users\acer\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\\Code.exe
 # query = "CREATE TABLE IF NOT EXISTS sys_command(id integer primary key, name VARCHAR(100), path VARCHAR(1000))"
 # cursor.execute(query)
 
-# query = "INSERT INTO sys_command VALUES (null,'VS Code', 'C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\Code.exe')"
+# query = "INSERT INTO sys_command VALUES (null,'Code', 'C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\Code.exe')"
 # cursor.execute(query)
 # con.commit()
 
@@ -61,7 +61,7 @@ cursor = con.cursor()
 # else:
 #     print("No Contact found")
 
-# query = "delete from sys_command where name='Code'"
-# query = "delete from contacts where id=6"
+# query = "delete from sys_command where name='VS Code'"
+# # query = "delete from contacts where id=6"
 # cursor.execute(query)
 # con.commit()

@@ -13,11 +13,11 @@ def tell_pending_tasks():
 
     if not pending_tasks:
         message = "You have no pending tasks."
-        print("✅ " + message)
+        print( message)
         speak(message)
     else:
         message = "Your pending tasks are: "
-        print("🗂️ " + message)
+        print( message)
         for task in pending_tasks:
             task_info = f"Task ID {task.tid}, Name: {task.name} with {task.priority} priority"
             print(f"- {task_info}")

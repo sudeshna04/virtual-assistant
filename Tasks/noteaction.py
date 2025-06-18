@@ -9,28 +9,28 @@ def speak(text):
     engine.runAndWait()
 
 def add_note():
-    print("Jarvis: Please enter the Task ID to which you want to add a note:")
-    speak("Jarvis: Please enter the Task ID to which you want to add a note:")
+    print("Please enter the Task ID to which you want to add a note:")
+    speak("Please enter the Task ID to which you want to add a note:")
     tid = int(input("You: "))
     task = session.query(Task).filter_by(tid=tid).first()
     
     if not task:
-        print("Jarvis:No task found with ID", tid)
+        print("o task found with ID", tid)
         return
     
-    print("Jarvis: Please enter your note content:")
-    speak("Jarvis: Please enter your note content:")
+    print("Please enter your note content:")
+    speak("Please enter your note content:")
     data = input("You: ")
 
-    print("Jarvis: Please enter priority (High/Medium/Low):")
-    speak("Jarvis: Please enter priority (High/Medium/Low):")
+    print("Please enter priority (High/Medium/Low):")
+    speak("Please enter priority (High/Medium/Low):")
     priority = input("You: ")
 
     note = Note(data=data, priority=priority, tid=tid)
     session.add(note)
     session.commit()
-    print("Jarvis: Note added successfully.")
-    speak("Jarvis: Note added successfully.")
+    print("Note added successfully.")
+    speak("Note added successfully.")
 
 def show_notes():
     notes = session.query(Note).all()
@@ -49,7 +49,7 @@ def show_notes():
         print("-" * 40)
 
 def update_note():
-    print("Jarvis: Please enter the Note ID to update:")
+    print("Please enter the Note ID to update:")
     nid = int(input("You: "))
     note = session.query(Note).filter_by(nid=nid).first()
 
@@ -57,10 +57,10 @@ def update_note():
         print(" No note found with ID", nid)
         return
 
-    print("Jarvis: Enter new note content:")
+    print("Enter new note content:")
     data = input("You: ")
 
-    print("Jarvis: Enter new priority (High/Medium/Low):")
+    print("Enter new priority (High/Medium/Low):")
     priority = input("You: ")
 
     note.data = data
@@ -69,7 +69,7 @@ def update_note():
     print("Note updated successfully.")
 
 def delete_note():
-    print("Jarvis: Enter the Note ID to delete:")
+    print("Enter the Note ID to delete:")
     nid = int(input("You: "))
     note = session.query(Note).filter_by(nid=nid).first()
 
@@ -82,7 +82,8 @@ def delete_note():
     print(f"Note ID {nid} deleted.")
 
 if __name__ == "__main__":
-    print("Jarvis: What do you want to do with notes? (add/show/update/delete)")
+    print("What do you want to do with notes? (add/show/update/delete)")
+    speak("What do you want to do with notes? You can add, show, update, or delete notes.")
     action = input("You: ").strip().lower()
 
     if action == "add":
